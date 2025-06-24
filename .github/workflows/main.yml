@@ -35,11 +35,23 @@ jobs:
         run: |
           chmod +x ./engines/stockfish
 
+      - name: Install expect
+        run: sudo apt-get update && sudo apt-get install -y expect
+
       - name: tournament
         run: |
           echo "starting bot"
-          (
-          echo "matchmaking"
-          sleep $((5 * 60 * 60 + 50 * 60))
-          echo "stop"
-          ) | python -u user_interface.py
+          expect <<EOF
+          spawn python -u user_interface.py
+          expect {
+            "*matchmaking*" {}
+            "*stop*" {}
+            "*quit*" {}
+            "*exit*" {}
+            timeout { }
+          }
+          send "matchmaking\r"
+          sleep 5
+          send "stop\r"
+          expect eof
+          EOF
