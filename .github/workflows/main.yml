@@ -43,15 +43,8 @@ jobs:
           echo "starting bot"
           expect <<EOF
           spawn python -u user_interface.py
-          expect {
-            "*matchmaking*" {}
-            "*stop*" {}
-            "*quit*" {}
-            "*exit*" {}
-            timeout { }
-          }
           send "matchmaking\r"
-          sleep 5
+          sleep $((5 * 60 * 60 + 50 * 60))
           send "stop\r"
           expect eof
           EOF
