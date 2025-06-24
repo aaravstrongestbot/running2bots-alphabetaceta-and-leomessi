@@ -40,11 +40,13 @@ jobs:
 
       - name: tournament
         run: |
+      - name: tournament
+        run: |
           echo "starting bot"
           expect <<EOF
+          log_user 1
           spawn python -u user_interface.py
           send "matchmaking\r"
           sleep $((5 * 60 * 60 + 50 * 60))
           send "stop\r"
-          expect eof
           EOF
