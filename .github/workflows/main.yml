@@ -41,5 +41,5 @@ jobs:
           (
           echo "matchmaking"
           sleep $((5 * 60 * 60 + 50 * 60))
-          echo "quit"
+          echo "stop"
           ) | python -u user_interface.py
