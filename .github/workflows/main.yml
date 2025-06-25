@@ -42,9 +42,7 @@ jobs:
         run: |
           set -x
           python -u user_interface.py <<EOF
-          matchmaking
-          EOF
+          send "matchmaking\r"
           sleep $((5 * 60 * 60 + 50 * 60))
-          python -u user_interface.py <<EOF
-          stop
+          send "quit\r"
           EOF
