@@ -8,13 +8,6 @@ on:
     paths:
       - "user_interface.py"
 
-concurrency:
-  group: ${{ github.ref }}
-  cancel-in-progress: true
-
-permissions:
-  contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,28 +15,26 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Python Dependency Installation
+      - name: Install Python dependencies
         uses: py-actions/py-dependency-install@v4.0.0
 
-      - name: Injection For my Repo
+      - name: Prepare config
         run: sed -i "s/TokenTimeIsBackBuddyss/${{ secrets.LICHESS_KEY }}/g" config.yml
 
-      - name: Stockfish
+      - name: Make Stockfish executable
         run: chmod +x ./engines/stockfish
 
-      - name: Install expect (fast)
+      - name: Install expect
         run: sudo apt-get update -qq && sudo apt-get install -yq --no-install-recommends expect
 
-      - name: Run bot with expect and long wait, with live log
+      - name: Run bot (live log, single session)
         run: |
-          set -x
           expect <<'EOF'
           log_user 1
           spawn python -u user_interface.py
           send "matchmaking\r"
           sleep 24000
           send "stop\r"
-          # Print all output from the bot to the log in real time
           expect {
             -re ".*" { exp_continue }
             eof
