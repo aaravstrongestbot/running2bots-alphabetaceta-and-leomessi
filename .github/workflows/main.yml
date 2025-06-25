@@ -39,6 +39,7 @@ jobs:
 
       - name: running bot 
         run: |
+          set -x
           expect <<EOF
           log_user 1
           spawn python -u user_interface.py
