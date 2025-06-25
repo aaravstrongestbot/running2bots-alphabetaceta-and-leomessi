@@ -45,6 +45,6 @@ jobs:
           spawn python -u user_interface.py
           send "matchmaking\r"
           sleep 5
-          send "stop\r"
+          send "quit\r"
           expect eof
           EOF
