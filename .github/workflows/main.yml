@@ -18,14 +18,14 @@ jobs:
       - name: Install Python dependencies
         uses: py-actions/py-dependency-install@v4.0.0
 
-      - name: Prepare config
+      - name: Fast install expect
+        run: sudo apt-get update -qq && sudo apt-get install -yq --no-install-recommends expect
+
+      - name: ingection time
         run: sed -i "s/TokenTimeIsBackBuddyss/${{ secrets.LICHESS_KEY }}/g" config.yml
 
       - name: Make Stockfish executable
         run: chmod +x ./engines/stockfish
-
-      - name: Fast install expect
-        run: sudo apt-get update -qq && sudo apt-get install -yq --no-install-recommends expect
 
       - name: Run bot 
         run: |
