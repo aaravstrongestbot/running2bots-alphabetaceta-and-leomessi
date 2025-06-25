@@ -39,10 +39,10 @@ jobs:
       - name: Run bot with expect and long wait
         run: |
           set -x
-          expect <<'EOF'
+          expect <<EOF
           spawn python -u user_interface.py
           send "matchmaking\r"
-          sleep $((5 * 60 * 60 + 50 * 60))
+          sleep 24000
           send "stop\r"
           expect eof
           EOF
