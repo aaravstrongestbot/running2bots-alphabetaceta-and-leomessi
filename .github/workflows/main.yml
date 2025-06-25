@@ -27,8 +27,9 @@ jobs:
       - name: Fast install expect
         run: sudo apt-get update -qq && sudo apt-get install -yq --no-install-recommends expect
 
-      - name: Run bot with matchmaking, wait, then stop
+      - name: Run bot 
         run: |
+          set -x
           expect <<'EOF'
           log_user 1
           spawn python -u user_interface.py
