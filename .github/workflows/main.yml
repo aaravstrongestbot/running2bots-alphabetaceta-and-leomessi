@@ -2,7 +2,6 @@
 
 name: Run bot
 
-# Controls when the workflow will run
 on:
   workflow_dispatch:
   push:
@@ -32,11 +31,12 @@ jobs:
         run: sed -i "s/TokenTimeIsBackBuddyss/${{ secrets.LICHESS_KEY }}/g" config.yml
 
       - name: Stockfish
-        run: |
-          chmod +x ./engines/stockfish
+        run: chmod +x ./engines/stockfish
 
-      - name: Install expect
-        run: sudo apt-get update && sudo apt-get install -y expect
+      - name: Fast expect install
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -yq --no-install-recommends expect
 
       - name: running bot
         run: |
@@ -46,4 +46,5 @@ jobs:
           send "matchmaking\r"
           sleep $((5 * 60 * 60 + 50 * 60))
           send "stop\r"
+          interact
           EOF
