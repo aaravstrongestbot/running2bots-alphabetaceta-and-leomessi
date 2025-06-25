@@ -37,13 +37,13 @@ jobs:
       - name: Install expect
         run: sudo apt-get update && sudo apt-get install -y expect
 
-      - name: running bot (5 hrs 50 min, then 10 min after stop)
+      - name: running bot 
         run: |
           expect <<EOF
           log_user 1
           spawn python -u user_interface.py
           send "matchmaking\r"
-          sleep $((5 * 60 * 60 + 50 * 60))
+          sleep 21000
           send "stop\r"
           sleep 600
           expect eof
