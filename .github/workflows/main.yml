@@ -37,6 +37,3 @@ jobs:
       - name: running bot 
         run: |
           python -u user_interface.py --matchmaking
-
-          expect eof
-          EOF
