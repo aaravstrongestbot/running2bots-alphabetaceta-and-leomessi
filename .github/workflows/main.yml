@@ -34,18 +34,9 @@ jobs:
         run: |
           chmod +x ./engines/stockfish
 
-      - name: Install expect
-        run: sudo apt-get update && sudo apt-get install -y expect
-
       - name: running bot 
         run: |
-          set -x
-          expect <<EOF
-          log_user 1
-          spawn python -u user_interface.py
-          send "matchmaking\r"
-          sleep 21000
-          send "stop\r"
-          sleep 600
+          python -u user_interface.py --matchmaking
+
           expect eof
           EOF
