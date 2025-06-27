@@ -6,10 +6,10 @@ engines:
     name: "stockfish"
     ponder: true
     silence_stderr: false
-    move_overhead_multiplier: 1.0
+    move_overhead_multiplier: 3.5
     uci_options:
-      Threads: 4
-      Hash: 512
+      Threads: 8
+      Hash: 4096
       Move Overhead: 250
   blitz:
     dir: "./engines"
