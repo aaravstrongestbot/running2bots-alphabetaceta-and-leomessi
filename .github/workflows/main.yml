@@ -49,7 +49,7 @@ jobs:
       - name: Run Bot
         run: |
           echo "Starting bot..."
-          python -u user_interface.py --upgrade --matchmaking  &
+          python -u user_interface.py --matchmaking  &
           PID=$!
           
           # Auto-exit after 350 minutes (so restart runs without overlap)
