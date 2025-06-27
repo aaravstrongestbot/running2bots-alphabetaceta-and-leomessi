@@ -7,8 +7,6 @@ on:
       - "main"
     paths:
       - "user_interface.py"
-  schedule:
-    - cron: "1 */5 * * *"  # Every 5 hours at minute 1
 
 jobs:
   build:
