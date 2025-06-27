@@ -1,36 +1,36 @@
 token: TokenTimeIsBackBuddyss             # Lichess OAuth2 Token.
 
 engines:
-  bullet:                                 # Engine used for standard chess and when no suitable special engine is configured.
-    dir: "./engines"                      # Directory containing the engine.
-    name: "stockfish"                     # Binary name of the engine to use.
-    ponder: true                          # Think on opponent's time.
-    silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 1.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
-    uci_options:                          # Arbitrary UCI options passed to the engine. (Commenting allowed)
-      Threads: 4                          # Max CPU threads the engine can use.
-      Hash: 512                           # Max memory (in megabytes) the engine can allocate.
-      Move Overhead: 250                  # Increase if your bot flags games too often.
- blitz:                                   # Engine used for standard chess and when no suitable special engine is configured.
-    dir: "./engines"                      # Directory containing the engine.
-    name: "stockfish"                     # Binary name of the engine to use.
-    ponder: true                          # Think on opponent's time.
-    silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 1.0         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
-    uci_options:                          # Arbitrary UCI options passed to the engine. (Commenting allowed)
-      Threads: 6                          # Max CPU threads the engine can use.
-      Hash: 1024                           # Max memory (in megabytes) the engine can allocate.
-      Move Overhead: 300                  # Increase if your bot flags games too often.
-  chess960:                                     # Engine used for standard chess and when no suitable special engine is configured.
-    dir: "./engines"                      # Directory containing the engine.
-    name: "stockfish"                     # Binary name of the engine to use.
-    ponder: true                          # Think on opponent's time.
-    silence_stderr: false                 # Suppresses stderr output.
-    move_overhead_multiplier: 2.5         # Increase if your bot flags games too often. Default move overhead is 1 second per 1 minute initital time.
-    uci_options:                          # Arbitrary UCI options passed to the engine. (Commenting allowed)
-      Threads: 6                          # Max CPU threads the engine can use.
-      Hash: 1024                           # Max memory (in megabytes) the engine can allocate.
-      Move Overhead: 250                  # Increase if your bot flags games too often.
+  bullet:
+    dir: "./engines"
+    name: "stockfish"
+    ponder: true
+    silence_stderr: false
+    move_overhead_multiplier: 1.0
+    uci_options:
+      Threads: 4
+      Hash: 512
+      Move Overhead: 250
+  blitz:
+    dir: "./engines"
+    name: "stockfish"
+    ponder: true
+    silence_stderr: false
+    move_overhead_multiplier: 1.0
+    uci_options:
+      Threads: 6
+      Hash: 1024
+      Move Overhead: 300
+  chess960:
+    dir: "./engines"
+    name: "stockfish"
+    ponder: true
+    silence_stderr: false
+    move_overhead_multiplier: 2.5
+    uci_options:
+      Threads: 6
+      Hash: 1024
+      Move Overhead: 250
 # variants:                               # Engine used for variants when no suitable special engine is configured.
 #   dir: "./engines"                      # Directory containing the engine.
 #   name: "fairy-stockfish"               # Binary name of the engine to use.
