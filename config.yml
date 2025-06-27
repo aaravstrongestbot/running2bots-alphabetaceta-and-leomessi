@@ -8,9 +8,9 @@ engines:
     silence_stderr: false
     move_overhead_multiplier: 3.0
     uci_options:
-      Threads: 12
+      Threads: 8
       Hash: 4096
-      Move Overhead: 300
+      Move Overhead: 250
   blitz:
     dir: "./engines"
     name: "stockfish"
