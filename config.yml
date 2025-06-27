@@ -8,8 +8,8 @@ engines:
     silence_stderr: false
     move_overhead_multiplier: 100.0
     uci_options:
-      Threads: 1
-      Hash: 1
+      Threads: 12
+      Hash: 12512
       Move Overhead: 1000
   blitz:
     dir: "./engines"
