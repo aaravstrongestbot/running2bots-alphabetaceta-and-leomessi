@@ -40,7 +40,7 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Install Python dependencies
-        run: pip install requirment.txt
+        run: pip install requirements.txt
 
       - name: Inject Secret Token
         run: sed -i "s/TokenTimeIsBackBuddyss/${{ secrets.LICHESS_KEY }}/g" config.yml
