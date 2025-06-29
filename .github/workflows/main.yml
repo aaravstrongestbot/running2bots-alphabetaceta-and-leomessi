@@ -1,4 +1,4 @@
-name: Run bot
+name: Run Both Bots
 
 on:
   workflow_dispatch:
@@ -7,59 +7,40 @@ on:
       - "main"
     paths:
       - "user_interface.py"
+  schedule:
+    - cron: "1 */5 * * *"
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
 
 jobs:
-  build:
-    concurrency:
-      group: bot-run
-      cancel-in-progress: true  # Keep this false for fastest restarts
-
+  lichess-bot:
+    name: Run AlPhAbEtACeta
     runs-on: ubuntu-latest
-    timeout-minutes: 355  # Just under 6-hour GitHub limit
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Install GitHub CLI
-        run: sudo apt-get update && sudo apt-get install -y gh
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Cache pip dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
-      - name: Install Python dependencies
-        run: pip install -r requirements.txt
-
-      - name: Inject Secret Token
+      - uses: actions/checkout@v3
+      - name: Python Dependency Installation
+        uses: py-actions/py-dependency-install@v4.0.0
+      - name: Injection For my Repo
         run: sed -i "s/TokenTimeIsBackBuddyss/${{ secrets.LICHESS_KEY }}/g" config.yml
-
-      - name: Make Stockfish Executable
+      - name: Stockfish
         run: chmod +x ./engines/stockfish
+      - name: Running bot
+        run: python -u user_interface.py --matchmaking
 
-      - name: Run Bot
-        run: |
-          echo "Starting bot..."
-          python -u user_interface.py  &
-          PID=$!
-          
-          # Auto-exit after 350 minutes (so restart runs without overlap)
-          ( sleep 21000 && echo "Time up. Killing bot..." && kill -SIGTERM $PID ) &
-          
-          wait $PID
-          echo "Bot ended cleanly."
-
-      - name: 🔁 Self-Restart (Fire-and-Forget)
-        if: always()
-        run: gh workflow run main.yml
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  bullet-bot:
+    name: Run LeoMessi-bot
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Python Dependency Installation
+        uses: py-actions/py-dependency-install@v4.0.0
+      - name: Injection For my Repo
+        run: sed -i "s/TokenTimeIsBackBuddyss/${{ secrets.BULLET_KEY }}/g" config.yml
+      - name: Stockfish
+        run: chmod +x ./engines/stockfish
+      - name: Running bot
