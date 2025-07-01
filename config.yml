@@ -4,33 +4,33 @@ engines:
   bullet:
     dir: "./engines"
     name: "stockfish"
-    ponder: false
+    ponder: true
     silence_stderr: false
-    move_overhead_multiplier: 1.0
+    move_overhead_multiplier: 3.0
     uci_options:
       Threads: 1
-      Hash: 1
-      Move Overhead: 5000
+      Hash: 4096
+      Move Overhead: 1000
   blitz:
     dir: "./engines"
     name: "stockfish"
-    ponder: false
+    ponder: true
     silence_stderr: false
-    move_overhead_multiplier: 1.0
+    move_overhead_multiplier: 3.0
     uci_options:
       Threads: 1
-      Hash: 1
-      Move Overhead: 5000
+      Hash: 4096
+      Move Overhead: 1000
   chess960:
     dir: "./engines"
     name: "stockfish"
-    ponder: false
+    ponder: true
     silence_stderr: false
-    move_overhead_multiplier: 1.0
+    move_overhead_multiplier: 3.0
     uci_options:
       Threads: 1
-      Hash: 1
-      Move Overhead: 5000
+      Hash: 4096
+      Move Overhead: 2000
 # variants:                               # Engine used for variants when no suitable special engine is configured.
 #   dir: "./engines"                      # Directory containing the engine.
 #   name: "fairy-stockfish"               # Binary name of the engine to use.
@@ -47,7 +47,7 @@ engines:
 
 syzygy:
   standard:
-    enabled: false                        # Activate local syzygy endgame tablebases.
+    enabled: true                        # Activate local syzygy endgame tablebases.
     paths:                                # Paths to local syzygy endgame tablebases.
       - "./engines/syzygy"
     max_pieces: 7                         # Count of max pieces in the local syzygy endgame tablebases.
@@ -88,11 +88,11 @@ opening_books:
       selection: best_move          # Move selection is one of "weighted_random", "uniform_random" or "best_move".
 #     max_depth: 16                       # Half move max depth. (Comment this line for max depth)
       names:                              # List of names of books to use if there is no specific book for the time control, white, black or chess960.
-       - optimus2409
-       - optimus32
-       - perfect2023
        - titans
-       - komodo
+       
+       
+       
+       
 #   Use the same pattern for 'bullet', 'blitz', 'rapid', 'classical',
 #   'antichess', 'atomic', 'chess960', 'crazyhouse', 'horde', 'kingofthehill', 'racingkings' and '3check' as well.
 #   Append '_white' or '_black' to use the books only as the specific color.
@@ -226,8 +226,4 @@ messages:
 
 books:                                    # Names of the opening books (to be used above in the opening_books section) and paths to the opening books.
   titans: "engines/Titans.bin"
-  optimus2409: "./engines/optimus2409.bin"
-  optimus32:  "./engines/optimus32.bin"
-  perfect2023: "./engines/Perfect2023.bin"
-  perfect2025: "./engines/Perfect2025.bin"
-  komodo: "./engines/komodo.bin"
+  
