@@ -9,8 +9,8 @@ engines:
     move_overhead_multiplier: 3.0
     uci_options:
       Threads: 1
-      Hash: 4096
-      Move Overhead: 1000
+      Hash: 1
+      Move Overhead: 5000
   blitz:
     dir: "./engines"
     name: "stockfish"
