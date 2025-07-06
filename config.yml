@@ -4,7 +4,7 @@ engines:
   bullet:
     dir: "./engines"
     name: "stockfish"
-    ponder: true
+    ponder: false
     silence_stderr: false
     move_overhead_multiplier: 5.0
     uci_options:
@@ -14,7 +14,7 @@ engines:
   blitz:
     dir: "./engines"
     name: "stockfish"
-    ponder: true
+    ponder: false
     silence_stderr: false
     move_overhead_multiplier: 5.0
     uci_options:
@@ -24,7 +24,7 @@ engines:
   chess960:
     dir: "./engines"
     name: "stockfish"
-    ponder: true
+    ponder: false
     silence_stderr: false
     move_overhead_multiplier: 5.0
     uci_options:
