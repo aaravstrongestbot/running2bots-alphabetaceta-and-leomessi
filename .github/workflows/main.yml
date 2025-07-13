@@ -57,4 +57,4 @@ jobs:
       - name: Stockfish
         run: chmod +x ./engines/stockfish
       - name: Running bot
-        run: python -u user_interface.py --upgrade      
+        run: python -u user_interface.py --matchmaking      
